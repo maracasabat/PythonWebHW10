@@ -5,10 +5,6 @@ from src.models import User
 fake = Faker('uk_UA')
 
 
-class ExceptionValidation(Exception):
-    pass
-
-
 def add_user(*args, **kwargs):
     user = User(**kwargs)
     user.save()
@@ -29,7 +25,9 @@ def get_user(*args, **kwargs):
 def get_all_users(*args, **kwargs):
     users = User.objects()
     if users:
-        return '\n'.join([f'User {user.name}, Phone: {user.phone}, Email: {user.email}, Address: {user.address}, Date: {user.added_on.date()}' for user in users])
+        return '\n'.join([
+                             f'User {user.name}, Phone: {user.phone}, Email: {user.email}, Address: {user.address}, Date: {user.added_on.date()}'
+                             for user in users])
 
 
 def update_user(*args, **kwargs):
